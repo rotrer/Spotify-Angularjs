@@ -27,8 +27,8 @@ return array(
 	*/
 
 	'fb' => array(
-		'APP_ID'=> '189408174576018',
-		'APP_SECRET'=> 'dbef14e7fdc7c2e1a6c52f74dc83ec35',
+		'APP_ID'=> '1448754492073979',
+		'APP_SECRET'=> '5f3e5822ca8909b12764a50090957c6f',
 		'GRAPH_FB'=> 'https://graph.facebook.com',
 		'PAGE_URL' => 'https://www.facebook.com/bowlprub',
 		'FB_APP' => 'https://www.facebook.com/bowlprub/app_189408174576018'

@@ -22,10 +22,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'fb_base_lrl_angular',
-			'username'  => 'root',
-			'password'  => 'root',
+			'host'     => 'localhost',
+			'database' => 'homestead',
+			'username' => 'homestead',
+			'password' => 'secret',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'fb_',
