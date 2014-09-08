@@ -7,4 +7,11 @@ class Regione extends \Eloquent {
 	 * @var string
 	 */
 	protected $table = 'regiones';
+
+	/**
+	 * The attributes excluded from the model's JSON form.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('created_at', 'updated_at');
 }

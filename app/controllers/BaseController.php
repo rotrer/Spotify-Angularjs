@@ -45,4 +45,17 @@ class BaseController extends Controller {
 	 	return Response::json($response, $code);
 	}
 
+	public function checkAuthToken($token)
+	{
+		$answer = DB::table('usuarios')
+                  ->where('access_token', $token)
+                  ->get();
+    if (count($answer) === 0) throw new Exception('Request inválido');
+
+    $expired_date = strtotime($answer[0]->updated_at) + $answer[0]->expire_token;
+		if (time() > $expired_date) {
+			throw new Exception('Token expirado');
+		}
+	}
+
 }

@@ -18,3 +18,8 @@ Route::get('/', function()
 });
 
 Route::resource('usuarios', 'UsuariosController');
+Route::resource('regiones', 'RegionesController');
+
+Route::get('comunas/regiones/{id}', 'ComunasController@regiones');
+
+Route::resource('comunas', 'ComunasController');

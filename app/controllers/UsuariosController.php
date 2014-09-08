@@ -21,7 +21,7 @@ class UsuariosController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return $this->reponseApi(400);
 	}
 
 	/**
@@ -120,7 +120,7 @@ class UsuariosController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return $this->reponseApi(400);
 	}
 
 	/**
@@ -176,5 +176,4 @@ class UsuariosController extends \BaseController {
 			throw new Exception('Token expirado');
 		}
 	}
-
 }
