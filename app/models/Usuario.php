@@ -13,7 +13,7 @@ class Usuario extends \Eloquent {
 	 *
 	 * @var array
 	 */
-	// protected $hidden = array('rut', 'meta');
+	protected $hidden = array('created_at', 'updated_at', 'meta');
 
 	public function existsByFuid($fbuid){
 		return Usuario::where('fbuid', '=', $fbuid)->first();
@@ -22,11 +22,11 @@ class Usuario extends \Eloquent {
 	public function saveUsuario($data){
 		$usuario = new Usuario;
 
-        foreach ($data as $key => $field) {
-            $usuario->$key = $field;
-        }
+				foreach ($data as $key => $field) {
+						$usuario->$key = $field;
+				}
 
-        $usuario->save();
-        return $usuario->id;
+				$usuario->save();
+				return $usuario->id;
 	}
 }
