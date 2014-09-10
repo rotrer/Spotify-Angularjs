@@ -1,0 +1,19 @@
+{
+  "name": "bower",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bowl13",
+  "authors": [
+    "bowl <calvarado@bowl.cl>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies":{
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2",
+    "angular": "~1.2.24"
+  }
+}
