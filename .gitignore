@@ -24,4 +24,3 @@ Thumbs.db
 /public/assets/*
 /public/partials/*.html
 /app/views/home.blade.php
-/public/temaplates.js

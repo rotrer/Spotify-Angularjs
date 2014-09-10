@@ -48,37 +48,34 @@ gulp.task "clean", ->
 gulp.task "copy-js-libs", ->
   gulp.src [
     "bower_components/angular/angular.js",
+    "bower_components/angular-route/angular-route.js",
     "bower_components/jquery/jquery.js",
   ]
   .pipe gulp.dest dest + "assets/scripts"
+  .pipe livereload()
 #copy js scripts app
 gulp.task "copy-js", ->
   gulp.src [
     src + "/scripts/*.js"
   ]
   .pipe gulp.dest dest + "assets/scripts"
-  .pipe livereload(server)
+  .pipe livereload()
 #copy template
 gulp.task "copy-tpl", ->
   gulp.src [
     src + "/template/*.php"
   ]
   .pipe gulp.dest "../app/views"
-  .pipe livereload(server)
+  .pipe livereload()
 #copy template
-# gulp.task "copy-html", ->
-#   gulp.src [
-#     src + "/html/partials/*.html"
-#   ]
-#   .pipe gulp.dest dest + "partials"
-#   .pipe livereload(server)
 gulp.task "copy-html", ->
   gulp.src [
     src + "/html/partials/*.html"
   ]
-  .pipe(templateCache())
-  .pipe gulp.dest dest
-  .pipe livereload(server)
+  # .pipe(templateCache())
+  .pipe(templateCache('templates.js', { module:'templatescache', standalone:true }))
+  .pipe gulp.dest dest + "assets/scripts"
+  .pipe livereload()
 gulp.task 'watch', ->
   gulp.watch [src + '/scripts/*.js'], ['copy-js']
   gulp.watch [src + '/template/*.php'], ['copy-tpl']
@@ -88,9 +85,6 @@ gulp.task 'watch', ->
 # Dist task
 # ====================
 # 
-
-
-
 
 
 #
