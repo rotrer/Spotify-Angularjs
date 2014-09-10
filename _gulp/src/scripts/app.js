@@ -1,6 +1,6 @@
 'use strict';
 //App
-angular.module('fbApp', ['ngRoute', 'controllers', 'factory', 'directives','templatescache'])
+angular.module('fbApp', ['ngRoute', 'controllers', 'factory', 'directives','templatescache', 'facebook'])
 
 .config(['$routeProvider',
 	function($routeProvider) {
@@ -9,14 +9,20 @@ angular.module('fbApp', ['ngRoute', 'controllers', 'factory', 'directives','temp
 				templateUrl: 'home.html',
 				controller: 'homeController'
 			}).
-			when('/test/:testId', {
-				templateUrl: 'home.html',
-				controller: 'homeController'
+			when('/register', {
+				templateUrl: 'register.html',
+				controller: 'registerController'
 			}).
 			otherwise({
 				redirectTo: '/home'
 			});
 }])
+
+.config(function(FacebookProvider) {
+   // Set your appId through the setAppId method or
+   // use the shortcut in the initialize method directly.
+   FacebookProvider.init(appId);
+})
 
 //Constantes App
 .value('dataApp', {

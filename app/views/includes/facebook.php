@@ -1,15 +1,16 @@
 <?php $fbSet = Config::get('app.fb'); ?>
-<div id="fb-root"></div>
+<!-- <div id="fb-root"></div> -->
 <script>
-    window.fbAsyncInit = function() {
-        FB.init({appId: '<?php echo $fbSet['APP_ID']; ?>', status: true, cookie: true, xfbml: true});
-        // FB.Canvas.setAutoGrow();
-        FB.Canvas.setSize({ height: $('html').height() });
-    };
-    (function() {
-        var e = document.createElement('script'); e.async = true;
-        e.src = document.location.protocol +
-            '//connect.facebook.net/es_ES/all.js';
-        document.getElementById('fb-root').appendChild(e);
-    }());
+    var appId = '<?php echo $fbSet['APP_ID']; ?>';
+    // window.fbAsyncInit = function() {
+    //     FB.init({appId: '<?php echo $fbSet['APP_ID']; ?>', status: true, cookie: true, xfbml: true});
+    //     // FB.Canvas.setAutoGrow();
+    //     FB.Canvas.setSize({ height: $('html').height() });
+    // };
+    // (function() {
+    //     var e = document.createElement('script'); e.async = true;
+    //     e.src = document.location.protocol +
+    //         '//connect.facebook.net/es_ES/all.js';
+    //     document.getElementById('fb-root').appendChild(e);
+    // }());
 </script>

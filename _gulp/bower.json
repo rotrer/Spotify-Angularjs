@@ -11,10 +11,13 @@
     "node_modules",
     "bower_components"
   ],
-  "devDependencies":{
+  "devDependencies": {
     "jquery": "~2.0.3",
     "underscore": "~1.5.2",
     "angular": "~1.2.24",
     "angular-route": "~1.2.24"
+  },
+  "dependencies": {
+    "angular-facebook": "~0.2.3"
   }
 }
