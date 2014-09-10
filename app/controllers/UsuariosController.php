@@ -44,7 +44,7 @@ class UsuariosController extends \BaseController {
 
 		if ($validator->fails())
 		{
-			return $this->reponseApi(422, 'true', $validator->errors()->all());
+			return $this->reponseApi(200, 'true', $validator->errors()->all());
 		}
 
 		$arrUserAdd =
