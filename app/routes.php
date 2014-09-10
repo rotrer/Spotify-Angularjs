@@ -13,8 +13,7 @@
 
 Route::get('/', function()
 {
-	// return View::make('hello');
-	return "Root";
+	return View::make('home');
 });
 
 Route::resource('usuarios', 'UsuariosController');

@@ -22,4 +22,6 @@ Thumbs.db
 /_gulp/node_modules/
 
 /public/assets/*
-/public/**.html
+/public/partials/*.html
+/app/views/home.blade.php
+/public/temaplates.js

@@ -1,6 +1,6 @@
 'use strict';
 // Ionic App
-angular.module('APP_NAME', ['controllers', 'factory', 'directives'])
+angular.module('fbApp', ['controllers', 'factory', 'directives'])
 
 //Constantes App
 .value('dataApp', {

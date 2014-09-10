@@ -23,9 +23,85 @@ server         = lr()
 
 # paths
 src          = "src"
-dest         = "../assets/"
+dest         = "../public/"
 
 #
 #  gulp tasks
 #  ==========================================================================
 
+
+# clean
+gulp.task "clean", ->
+  gulp.src [
+    dest + "/scripts/*.*"
+    dest + "/styles/*.*"
+    dest + "/img/*.*"
+    dest + "*.html"
+  ]
+  .pipe clean()
+
+#
+# Dev task
+# ====================
+# 
+#copy js scripts app
+gulp.task "copy-js-libs", ->
+  gulp.src [
+    "bower_components/angular/angular.js",
+    "bower_components/jquery/jquery.js",
+  ]
+  .pipe gulp.dest dest + "assets/scripts"
+#copy js scripts app
+gulp.task "copy-js", ->
+  gulp.src [
+    src + "/scripts/*.js"
+  ]
+  .pipe gulp.dest dest + "assets/scripts"
+  .pipe livereload(server)
+#copy template
+gulp.task "copy-tpl", ->
+  gulp.src [
+    src + "/template/*.php"
+  ]
+  .pipe gulp.dest "../app/views"
+  .pipe livereload(server)
+#copy template
+# gulp.task "copy-html", ->
+#   gulp.src [
+#     src + "/html/partials/*.html"
+#   ]
+#   .pipe gulp.dest dest + "partials"
+#   .pipe livereload(server)
+gulp.task "copy-html", ->
+  gulp.src [
+    src + "/html/partials/*.html"
+  ]
+  .pipe(templateCache())
+  .pipe gulp.dest dest
+  .pipe livereload(server)
+gulp.task 'watch', ->
+  gulp.watch [src + '/scripts/*.js'], ['copy-js']
+  gulp.watch [src + '/template/*.php'], ['copy-tpl']
+  gulp.watch [src + '/html/partials/*.html'], ['copy-html']
+
+#
+# Dist task
+# ====================
+# 
+
+
+
+
+
+#
+#  main tasks
+#  ==========================================================================
+
+# default task
+gulp.task 'default', [
+  "copy-js-libs"
+  "copy-js"
+  "copy-tpl"
+  "copy-html"
+  "watch"
+]

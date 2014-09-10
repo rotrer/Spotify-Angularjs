@@ -26,6 +26,6 @@
     "gulp-uglify": "*",
     "gulp-util": "*",
     "tiny-lr": "*",
-    "gulp-angular-templatecache"
+    "gulp-angular-templatecache": "*"
   }
 }
