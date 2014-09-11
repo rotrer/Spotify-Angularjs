@@ -8,6 +8,7 @@
 		{{ HTML::script('assets/scripts/angular.js') }}
 		{{ HTML::script('assets/scripts/angular-route.js') }}
 		{{ HTML::script('assets/scripts/angular-facebook.js') }}
+		{{ HTML::script('assets/scripts/angular-cookies.js') }}
 		{{ HTML::script('assets/scripts/app.js') }}
 		{{ HTML::script('assets/scripts/controllers.js') }}
 		{{ HTML::script('assets/scripts/factory.js') }}

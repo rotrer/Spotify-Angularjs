@@ -47,19 +47,6 @@ class UsuariosController extends \BaseController {
 			return $this->reponseApi(200, 'true', $validator->errors()->all());
 		}
 
-		$arrUserAdd =
-			array(
-					"fbuid" => Input::get('id'),
-					"firstname" => Input::get('first_name'),
-					"lastname" => Input::get('last_name'),
-					"email" => Input::get('email'),
-					"genero" => Input::get('gender'),
-					"ip" => Request::getClientIp(),
-					"complete" => 0,
-					"meta" => json_encode(array("link" => Input::get('link'), "locale" => Input::get('locale'), "name" => Input::get('name'), "timezone" => Input::get('timezone'), "updated_time" => Input::get('updated_time'), "username" => Input::get('username'))),
-					"access_token" => Input::get('access_token'),
-					"expire_token" => Input::get('expire_token')
-			);
 		$response = array();
 		#Crear instancia modelo usuario
 		$usuario = new Usuario;
@@ -68,6 +55,19 @@ class UsuariosController extends \BaseController {
 		$exists = $usuario->existsByFuid(Input::get('id'));
 
 		if($exists === null){
+				$arrUserAdd =
+					array(
+							"fbuid" => Input::get('id'),
+							"firstname" => Input::get('first_name'),
+							"lastname" => Input::get('last_name'),
+							"email" => Input::get('email'),
+							"genero" => Input::get('gender'),
+							"ip" => Request::getClientIp(),
+							"complete" => 0,
+							"meta" => json_encode(array("link" => Input::get('link'), "locale" => Input::get('locale'), "name" => Input::get('name'), "timezone" => Input::get('timezone'), "updated_time" => Input::get('updated_time'), "username" => Input::get('username'))),
+							"access_token" => Input::get('access_token'),
+							"expire_token" => Input::get('expire_token')
+					);
 				$usuario_id = $usuario->saveUsuario( $arrUserAdd );
 				if ( $usuario_id ) {
 						return $this->reponseApi(201, 'false', '', array('id' => $usuario_id, 'token' => Input::get('access_token')));
@@ -77,6 +77,7 @@ class UsuariosController extends \BaseController {
 		}  else {
 				$exists->updated_at = date('Y-m-d H:i:s');
 				$exists->access_token = Input::get('access_token');
+				$exists->expire_token = Input::get('expire_token');
 				$exists->save();
 				
 				return $this->reponseApi(200, 'false', '', array('id' => $exists->id, 'token' => Input::get('access_token')));

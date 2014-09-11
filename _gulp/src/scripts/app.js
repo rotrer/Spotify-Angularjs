@@ -1,6 +1,6 @@
 'use strict';
 //App
-angular.module('fbApp', ['ngRoute', 'controllers', 'factory', 'directives','templatescache', 'facebook'])
+angular.module('fbApp', ['ngRoute', 'ngCookies', 'controllers', 'factory', 'directives','templatescache', 'facebook'])
 
 .config(['$routeProvider',
 	function($routeProvider) {

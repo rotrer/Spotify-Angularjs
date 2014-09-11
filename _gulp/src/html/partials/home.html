@@ -1,6 +1,7 @@
 <div>
   <div class="alert alert-info" data-ng-show="salutation">Hello, {{user.name}}</div>
   <div class="alert alert-warning" data-ng-show="byebye">Bye bye :'(</div>
+  <div class="alert alert-warning" data-ng-show="errorApi">Algo va mal :'(</div>
 </div>
 
 <button type="button" class="btn btn-primary btn-large" data-ng-show="!logged" data-ng-disabled="!facebookReady" data-ng-click="IntentLogin()">Login with Facebook</button>

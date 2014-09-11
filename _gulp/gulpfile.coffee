@@ -50,6 +50,7 @@ gulp.task "copy-js-libs", ->
     "bower_components/angular/angular.js",
     "bower_components/angular-route/angular-route.js",
     "bower_components/angular-facebook/lib/angular-facebook.js",
+    "bower_components/angular-cookies/angular-cookies.js",
     "bower_components/jquery/jquery.js",
   ]
   .pipe gulp.dest dest + "assets/scripts"

@@ -7,9 +7,10 @@ angular.module('controllers', [])
 	'$scope',
 	'$timeout',
 	'$location',
+	'$cookieStore',
 	'Facebook',
 	'UserFb',
-	function($scope, $timeout, $location, Facebook, UserFb) {
+	function($scope, $timeout, $location, $cookieStore, Facebook, UserFb) {
 		// Define user empty data :/
 		$scope.user = {};
 		
@@ -19,6 +20,7 @@ angular.module('controllers', [])
 		// And some fancy flags to display messages upon user status change
 		$scope.byebye = false;
 		$scope.salutation = false;
+		$scope.errorApi = false;
 		
 		/**
 		 * Watch for Facebook to be ready.
@@ -55,7 +57,7 @@ angular.module('controllers', [])
 			 Facebook.login(function(response) {
 				if (response.status == 'connected') {
 					$scope.logged = true;
-					$scope.me();
+					$scope.me(response);
 				}
 			
 			});
@@ -67,19 +69,22 @@ angular.module('controllers', [])
 			$scope.me = function(authFb) {
 				Facebook.api('/me', function(dataUser) {
 					UserFb.authUser(dataUser, authFb).then(function(results) {
-						console.log(results);
+						/**
+						 * Using $scope.$apply since this happens outside angular framework.
+						 */
+						if (results.status == 200 && results.error == "false"){
+		      		$cookieStore.put('user_id', results.data.id);
+		      		$cookieStore.put('token', results.data.token);
+		      		$scope.user = dataUser;
+							$scope.salutation = true;
+							$timeout(function() {
+								$location.path('/register');
+							}, 2000);
+		      	} else {
+		      		$scope.errorApi = true;
+		      		$scope.logged = false;
+		      	}
 					});
-					/**
-					 * Using $scope.$apply since this happens outside angular framework.
-					 */
-					$scope.$apply(function() {
-						$scope.user = dataUser;
-						$scope.salutation = true;
-						$timeout(function() {
-							$location.path('/register');
-						}, 2000)
-					});
-					
 				});
 			};
 		
@@ -126,8 +131,28 @@ angular.module('controllers', [])
 .controller('registerController', [
 	'$scope',
 	'$timeout',
+	'$location',
+	'$cookieStore',
 	'Facebook',
-	function($scope, $timeout, Facebook) {
-		console.log("ASDA");
+	function($scope, $timeout, $location, $cookieStore, Facebook) {
+		console.log($cookieStore.get('user_id'));
+		console.log($cookieStore.get('token'));
+		
+		/**
+		 * IntentLogin
+		 */
+		Facebook.getLoginStatus(function(response) {
+			if (response.status !== 'connected') {
+				$cookieStore.remove('user_id');
+				$cookieStore.remove('token');
+				$location.path('/home');
+			}
+		});
 	}
 ])
+
+
+
+
+
+
