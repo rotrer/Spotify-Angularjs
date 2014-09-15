@@ -29,4 +29,16 @@ angular.module('factory', [])
       return promise;
     }
   };
-});
+})
+
+.factory('spotifySearch', function($http, dataApp) {
+  return {
+    getTrack: function(txtTrack) {
+      var url = dataApp.base_spotify_url + '/search?q=' + encodeURIComponent(txtTrack)  +'&type=track';
+      var promise = $http.get(url).then(function (response) {
+        return response.data;
+      });
+      return promise;
+    }
+  };
+})

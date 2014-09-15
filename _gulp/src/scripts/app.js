@@ -13,6 +13,10 @@ angular.module('fbApp', ['ngRoute', 'ngCookies', 'controllers', 'factory', 'dire
 				templateUrl: 'register.html',
 				controller: 'registerController'
 			}).
+			when('/spotify', {
+				templateUrl: 'spotify.html',
+				controller: 'spotifyController'
+			}).
 			otherwise({
 				redirectTo: '/home'
 			});
@@ -26,7 +30,8 @@ angular.module('fbApp', ['ngRoute', 'ngCookies', 'controllers', 'factory', 'dire
 
 //Constantes App
 .value('dataApp', {
-	endPointBase: '' 
+	client_spotify: 'a200af07b3e04ab69823a96845a81f52',
+	base_spotify_url: 'https://api.spotify.com/v1'
 })
 
 //Filters

@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'fb_base_lrl_angular',
+			'database'  => 'labs_spotify_angular',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

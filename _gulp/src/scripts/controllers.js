@@ -78,7 +78,7 @@ angular.module('controllers', [])
 		      		$scope.user = dataUser;
 							$scope.salutation = true;
 							$timeout(function() {
-								$location.path('/register');
+								$location.path('/spotify');
 							}, 2000);
 		      	} else {
 		      		$scope.errorApi = true;
@@ -148,6 +148,54 @@ angular.module('controllers', [])
 				$location.path('/home');
 			}
 		});
+	}
+])
+
+.controller('spotifyController', [
+	'$scope',
+	'$timeout',
+	'$location',
+	'$cookieStore',
+	'Facebook',
+	'spotifySearch',
+	'dataApp',
+	function($scope, $timeout, $location, $cookieStore, Facebook, spotifySearch, dataApp) {
+		/**
+		 * Check Cookies
+		 */
+		if ($cookieStore.get('user_id') === undefined || $cookieStore.get('token') === undefined) {
+			$location.path('/home');
+		};
+		/**
+		 * IntentLogin
+		 */
+		Facebook.getLoginStatus(function(response) {
+			if (response.status !== 'connected') {
+				$cookieStore.remove('user_id');
+				$cookieStore.remove('token');
+				$location.path('/home');
+			}
+		});
+
+
+		/**
+		 * Input search
+		 */
+		$scope.res_search = false;
+		$scope.updateSearch = function(){
+			spotifySearch.getTrack( $scope.track ).then(function(results) {
+				// console.log(results.tracks.items);
+				$scope.res_search = true;
+				$scope.listTracks = results.tracks.items;
+			});
+		}
+
+
+		// console.log(dataApp.client_spotify);
+		// console.log($cookieStore.get('user_id'));
+		// console.log($cookieStore.get('token'));
+		
+		
 	}
 ])
 

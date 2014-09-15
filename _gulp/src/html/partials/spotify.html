@@ -1,0 +1,22 @@
+<div ng-controller="spotifyController">
+  <form novalidate class="simple-form">
+    Buscar canción: <input type="text" ng-model="track" ng-change="updateSearch()" /><br />
+    
+    <button ng-click="search()">Buscar</button>
+  </form>
+  <h3 ng-show="res_search">Tu búsqueda: {{track}}</h3>
+
+  <ul ng-show="res_search" style="list-style: none;">
+
+  	<li ng-repeat="the_track in listTracks" style="float:left; padding:5px;">
+  		<a href="{{ the_track.external_urls.spotify }}" target="_blank">
+	  		<p>Canción: <br> {{ the_track.name }}</p>
+	  		<p>Album <br> {{ the_track.album.name }}:</p>
+	  		<p>Artista: <br> {{ the_track.artists[0].name }}</p>
+	  		<img src="{{ the_track.album.images[2].url }}" alt="" width="100">
+  		</a>
+  	</li>
+
+  </ul>
+
+</div>
